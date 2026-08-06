@@ -1,14 +1,20 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
-import { galleryCategories, galleryItems } from "@/lib/site-data";
+import { galleryItems } from "@/lib/site-data";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 
 export default function Gallery() {
+  // Kategoriler doğrudan mevcut görsellerden türetilir — karşılığında
+  // fotoğraf olmayan bir kategori asla listede görünmez.
+  const categories = useMemo(
+    () => ["Tümü", ...Array.from(new Set(galleryItems.map((g) => g.category)))],
+    []
+  );
   const [activeCategory, setActiveCategory] = useState("Tümü");
   const [lightbox, setLightbox] = useState<number | null>(null);
 
@@ -49,22 +55,24 @@ export default function Gallery() {
           description="Farklı kategorilerdeki temizlik projelerimizden örnekler."
         />
 
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {galleryCategories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={cn(
-                "px-5 py-2 rounded-full text-sm font-medium border transition-colors",
-                activeCategory === cat
-                  ? "bg-gold text-obsidian border-gold"
-                  : "border-gold/30 text-graystone hover:border-gold hover:text-gold"
-              )}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        {categories.length > 2 && (
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={cn(
+                  "px-5 py-2 rounded-full text-sm font-medium border transition-colors",
+                  activeCategory === cat
+                    ? "bg-gold text-obsidian border-gold"
+                    : "border-gold/30 text-graystone hover:border-gold hover:text-gold"
+                )}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="columns-2 md:columns-3 gap-4 space-y-4">
           {filtered.map((item, i) => (

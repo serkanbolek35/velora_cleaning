@@ -10,7 +10,7 @@ export const siteConfig = {
   whatsapp: "905397235333",
   whatsappMessage: "Merhaba, temizlik hizmeti hakkında bilgi almak istiyorum.",
   email: "info@veloracleaning.com",
-  url: "https://www.veloracleaning.com",
+  url: "https://serkanbolek35.github.io/velora_cleaning",
   instagram: "https://instagram.com/velora.cleaning",
   address: "Pendik, İstanbul, Türkiye",
   areas: ["Pendik", "Tuzla", "Kartal", "Maltepe", "Sultanbeyli"],
@@ -385,19 +385,61 @@ export const beforeAfterItems = [
   },
 ];
 
-export const galleryCategories = ["Tümü", "Ev", "Ofis", "İnşaat Sonrası", "Cam", "Merdiven"];
-
+// Yalnızca gerçek, birbirinden farklı fotoğraflar. Karşılığında görsel
+// bulunmayan kategoriler (Ev, Ofis, Merdiven) galeriye eklenmedi. Filtre
+// butonları bu diziden otomatik türetilir (bkz. Gallery bileşeni), böylece
+// yeni bir kategori eklemek/kaldırmak için tek yapılması gereken bu listeyi
+// güncellemektir.
 export const galleryItems = [
-  { title: "Salon Temizliği", category: "Ev", image: "/images/poster-rooms.jpg" },
-  { title: "Mutfak Detay Temizliği", category: "Ev", image: "/images/gallery/before-after-insaat2.jpg" },
-  { title: "Yatak Odası Düzeni", category: "Ev", image: "/images/gallery/before-after-insaat2.jpg" },
-  { title: "Banyo Hijyeni", category: "Ev", image: "/images/gallery/before-after-insaat1.jpg" },
-  { title: "Ofis Genel Temizlik", category: "Ofis", image: "/images/gallery/before-after-cam.jpg" },
-  { title: "Toplantı Salonu", category: "Ofis", image: "/images/gallery/before-after-cam.jpg" },
-  { title: "Teslim Öncesi Temizlik", category: "İnşaat Sonrası", image: "/images/gallery/before-after-insaat1.jpg" },
-  { title: "Yeni Bina Temizliği", category: "İnşaat Sonrası", image: "/images/gallery/before-after-insaat2.jpg" },
-  { title: "Vitrin Camı", category: "Cam", image: "/images/gallery/before-after-cam.jpg" },
-  { title: "Pencere Parlatma", category: "Cam", image: "/images/gallery/before-after-cam.jpg" },
-  { title: "Merdiven Boşluğu", category: "Merdiven", image: "/images/gallery/before-after-insaat1.jpg" },
-  { title: "Giriş Katı Temizliği", category: "Merdiven", image: "/images/gallery/before-after-insaat2.jpg" },
+  {
+    title: "Vitrin Cam Temizliği",
+    category: "Cam Temizliği",
+    image: "/images/gallery/before-after-cam.jpg",
+  },
+  {
+    title: "Mağaza Zemin Temizliği",
+    category: "İnşaat Sonrası",
+    image: "/images/gallery/before-after-insaat1.jpg",
+  },
+  {
+    title: "Daire Teslim Temizliği",
+    category: "İnşaat Sonrası",
+    image: "/images/gallery/before-after-insaat2.jpg",
+  },
+];
+
+export type VideoGalleryItem = {
+  title: string;
+  video: string;
+  poster: string;
+};
+
+// Gerçek çalışma videoları — yalnızca elimizde görüntü olan işler burada
+// listelenir. Yeni bir video geldiğinde bu diziye eklemek yeterlidir.
+export const videoGalleryItems: VideoGalleryItem[] = [
+  {
+    title: "İnşaat Sonrası Temizlik — Öncesi",
+    video: "/videos/insaat-oncesi-salon.mp4",
+    poster: "/images/video-posters/insaat-oncesi-salon.jpg",
+  },
+  {
+    title: "İnşaat Sonrası Temizlik — Sonrası",
+    video: "/videos/insaat-sonrasi-salon.mp4",
+    poster: "/images/video-posters/insaat-sonrasi-salon.jpg",
+  },
+  {
+    title: "İnşaat Sonrası Temizlik — Banyo (Öncesi)",
+    video: "/videos/insaat-oncesi-banyo.mp4",
+    poster: "/images/video-posters/insaat-oncesi-banyo.jpg",
+  },
+  {
+    title: "İnşaat Sonrası Temizlik — Banyo (Sonrası)",
+    video: "/videos/insaat-sonrasi-banyo.mp4",
+    poster: "/images/video-posters/insaat-sonrasi-banyo.jpg",
+  },
+  {
+    title: "İnşaat Sonrası Temizlik — Mutfak",
+    video: "/videos/insaat-sonrasi-mutfak.mp4",
+    poster: "/images/video-posters/insaat-sonrasi-mutfak.jpg",
+  },
 ];

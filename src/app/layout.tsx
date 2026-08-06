@@ -44,8 +44,11 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: { canonical: siteConfig.url },
   icons: {
-    icon: "/images/logo.jpg",
-    apple: "/images/logo.jpg",
+    // next/metadata'nın "icons" alanı, "openGraph.images" alanının aksine
+    // basePath'i otomatik eklemiyor (GitHub Pages'te /velora_cleaning gibi
+    // bir alt yolda favicon 404 verirdi). Bu yüzden mutlak URL kullanılıyor.
+    icon: `${siteConfig.url}/images/logo.jpg`,
+    apple: `${siteConfig.url}/images/logo.jpg`,
   },
   openGraph: {
     type: "website",

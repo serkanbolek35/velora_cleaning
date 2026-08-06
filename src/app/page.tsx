@@ -4,6 +4,7 @@ import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Services from "@/components/sections/Services";
 import BeforeAfter from "@/components/sections/BeforeAfter";
 import Gallery from "@/components/sections/Gallery";
+import VideoGallery from "@/components/sections/VideoGallery";
 import ServiceAreas from "@/components/sections/ServiceAreas";
 import Reviews from "@/components/sections/Reviews";
 import Process from "@/components/sections/Process";
@@ -28,6 +29,7 @@ export default function HomePage() {
       <Services />
       <BeforeAfter />
       <Gallery />
+      <VideoGallery />
       <ServiceAreas />
       <Reviews />
       <Process />
