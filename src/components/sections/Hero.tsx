@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight } from "lucide-react";
-import { whatsappLink, stats } from "@/lib/site-data";
+import { stats } from "@/lib/site-data";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 export default function Hero() {
@@ -50,31 +49,9 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gold text-obsidian font-semibold shadow-gold hover:bg-gold-light transition-colors"
-          >
-            <MessageCircle size={19} /> WhatsApp Teklif Al
-          </a>
-          <a
-            href="#kesif-formu"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-gold/40 text-ivory font-semibold hover:border-gold hover:text-gold transition-colors"
-          >
-            Ücretsiz Keşif <ArrowRight size={18} />
-          </a>
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-16 grid grid-cols-3 gap-6 max-w-2xl mx-auto"
         >
           {stats.map((stat) => (
