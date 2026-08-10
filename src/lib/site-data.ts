@@ -10,7 +10,7 @@ export const siteConfig = {
   whatsapp: "905397235333",
   whatsappMessage: "Merhaba, temizlik hizmeti hakkında bilgi almak istiyorum.",
   email: "info@veloracleaning.com",
-  url: "https://serkanbolek35.github.io/velora_cleaning",
+  url: "https://veloracleaning.com.tr",
   instagram: "https://instagram.com/velora.cleaning",
   address: "Pendik, İstanbul, Türkiye",
   areas: ["Pendik", "Tuzla", "Kartal", "Maltepe", "Sultanbeyli"],
