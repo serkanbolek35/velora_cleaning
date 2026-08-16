@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Instagram, MapPin, Phone, Mail, MessageCircle } from "lucide-react";
-import { siteConfig, whatsappLink, services } from "@/lib/site-data";
+import { siteConfig, whatsappLink, services, areaPages } from "@/lib/site-data";
 
 export default function Footer() {
   return (
     <footer className="bg-obsidian border-t border-gold/10 pt-16 pb-28 md:pb-10">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-12">
           <div>
             <Link href="/" className="flex items-center gap-3 mb-4">
               <div className="relative w-12 h-12 rounded-full overflow-hidden ring-1 ring-gold/40">
@@ -48,6 +48,19 @@ export default function Footer() {
                 <li key={s.slug}>
                   <Link href={`/hizmetler/${s.slug}`} className="hover:text-gold transition-colors">
                     {s.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-display text-lg text-ivory mb-4">Bölgeler</h3>
+            <ul className="space-y-2.5 text-sm text-graystone">
+              {areaPages.map((a) => (
+                <li key={a.slug}>
+                  <Link href={`/${a.slug}`} className="hover:text-gold transition-colors">
+                    {a.name} Temizlik
                   </Link>
                 </li>
               ))}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import * as Icons from "lucide-react";
 import { siteConfig, whyChooseUs, stats } from "@/lib/site-data";
+import { buildBreadcrumbLd } from "@/lib/seo";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import Process from "@/components/sections/Process";
 import Reviews from "@/components/sections/Reviews";
@@ -15,8 +16,14 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Ana Sayfa", path: "" },
+    { name: "Hakkımızda", path: "/hakkimizda" },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="relative pt-40 pb-20 md:pt-48 md:pb-28 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/poster-main.jpg" alt="" fill className="object-cover" aria-hidden="true" />

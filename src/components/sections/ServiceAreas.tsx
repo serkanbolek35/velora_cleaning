@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { MapPin } from "lucide-react";
-import { siteConfig, whatsappLink } from "@/lib/site-data";
+import { areaPages } from "@/lib/site-data";
 import SectionHeading from "@/components/ui/SectionHeading";
+
+const MotionLink = motion(Link);
 
 export default function ServiceAreas() {
   return (
@@ -16,12 +19,10 @@ export default function ServiceAreas() {
         />
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
-          {siteConfig.areas.map((area, i) => (
-            <motion.a
-              key={area}
-              href={whatsappLink(`Merhaba, ${area} bölgesinde temizlik hizmeti hakkında bilgi almak istiyorum.`)}
-              target="_blank"
-              rel="noopener noreferrer"
+          {areaPages.map((area, i) => (
+            <MotionLink
+              key={area.slug}
+              href={`/${area.slug}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -31,8 +32,8 @@ export default function ServiceAreas() {
               <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center">
                 <MapPin className="text-gold" size={22} />
               </div>
-              <span className="font-display text-lg text-ivory">{area}</span>
-            </motion.a>
+              <span className="font-display text-lg text-ivory">{area.name}</span>
+            </MotionLink>
           ))}
         </div>
       </div>

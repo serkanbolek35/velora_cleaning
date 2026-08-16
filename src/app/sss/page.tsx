@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig, faqs } from "@/lib/site-data";
+import { buildBreadcrumbLd } from "@/lib/seo";
 import FAQ from "@/components/sections/FAQ";
 import WhatsAppCTA from "@/components/sections/WhatsAppCTA";
 
@@ -22,9 +23,15 @@ export default function FaqPage() {
     })),
   };
 
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Ana Sayfa", path: "" },
+    { name: "S.S.S", path: "/sss" },
+  ]);
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="relative pt-40 pb-20 md:pt-48 md:pb-24 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/poster-main.jpg" alt="" fill className="object-cover" aria-hidden="true" />

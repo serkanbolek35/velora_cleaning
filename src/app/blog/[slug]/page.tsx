@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Clock, ArrowLeft, MessageCircle } from "lucide-react";
-import { blogPosts, siteConfig, whatsappLink } from "@/lib/site-data";
+import { blogPosts, siteConfig, whatsappLink, services } from "@/lib/site-data";
 import { formatDateTR } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -34,6 +34,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   if (!post) notFound();
 
   const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  // Blog kategorisiyle eşleşen hizmet sayfası - içerik ile ticari (dönüşüm
+  // odaklı) sayfa arasında dahili bağlantı kurar (Phase 5 / Phase 10).
+  const relatedService = services.find((s) => s.title === post.category);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -96,7 +99,19 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             <div className="mt-12 card-gold-border rounded-2xl p-8 bg-obsidian-light flex flex-col sm:flex-row items-center justify-between gap-5">
               <div>
                 <h3 className="font-display text-xl text-ivory mb-1">Profesyonel Temizlik mi Gerekiyor?</h3>
-                <p className="text-graystone text-sm">Ücretsiz keşif için hemen WhatsApp&apos;tan yazın.</p>
+                <p className="text-graystone text-sm">
+                  Ücretsiz keşif için hemen WhatsApp&apos;tan yazın
+                  {relatedService && (
+                    <>
+                      {" "}
+                      veya{" "}
+                      <Link href={`/hizmetler/${relatedService.slug}`} className="text-gold hover:underline">
+                        {relatedService.title} sayfamıza
+                      </Link>{" "}
+                      göz atın.
+                    </>
+                  )}
+                </p>
               </div>
               <a
                 href={whatsappLink()}

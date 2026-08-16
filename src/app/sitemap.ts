@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { siteConfig, services, blogPosts } from "@/lib/site-data";
+import { siteConfig, services, blogPosts, areaPages } from "@/lib/site-data";
 
 export const dynamic = "force-static";
 
@@ -18,6 +18,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const areaRoutes = areaPages.map((a) => ({
+    url: `${siteConfig.url}/${a.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const blogRoutes = blogPosts.map((p) => ({
     url: `${siteConfig.url}/blog/${p.slug}`,
     lastModified: new Date(p.date),
@@ -25,5 +32,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...areaRoutes, ...blogRoutes];
 }

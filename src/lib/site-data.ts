@@ -10,7 +10,7 @@ export const siteConfig = {
   whatsapp: "905397235333",
   whatsappMessage: "Merhaba, temizlik hizmeti hakkında bilgi almak istiyorum.",
   email: "info@veloracleaning.com",
-  url: "https://veloracleaning.com.tr",
+  url: "https://serkanbolek35.github.io/velora_cleaning",
   instagram: "https://instagram.com/velora.cleaning",
   address: "Pendik, İstanbul, Türkiye",
   areas: ["Pendik", "Tuzla", "Kartal", "Maltepe", "Sultanbeyli"],
@@ -18,6 +18,88 @@ export const siteConfig = {
 
 export const whatsappLink = (message?: string) =>
   `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message || siteConfig.whatsappMessage)}`;
+
+export type AreaPage = {
+  slug: string;
+  name: string;
+  metaTitle: string;
+  metaDescription: string;
+  intro: string;
+  aboutArea: string;
+  whyLocal: string;
+};
+
+// Her ilçe için gerçekten farklı, o bölgeye özgü içerik. Şehir adını
+// değiştirerek aynı paragrafı çoğaltmak yerine, her ilçenin bilinen genel
+// karakterine (kıyı/iç kesim, konut dokusu, gelişim yönü) göre ayrı ayrı
+// yazıldı — doorway page riskinden kaçınmak için.
+export const areaPages: AreaPage[] = [
+  {
+    slug: "pendik-temizlik",
+    name: "Pendik",
+    metaTitle: "Pendik Temizlik Şirketi | Ev, Ofis ve İnşaat Sonrası Temizlik",
+    metaDescription:
+      "Pendik'te profesyonel ev temizliği, ofis temizliği ve inşaat sonrası temizlik hizmeti. Velora Cleaning merkez üssümüz Pendik'te aynı gün hizmet imkanı. Ücretsiz keşif.",
+    intro:
+      "Velora Cleaning'in merkez üssü Pendik'te bulunuyor; bu da ilçe genelinde en hızlı randevu ve keşif imkanını sunduğumuz anlamına geliyor. Sahil şeridinden iç mahallelere kadar Pendik'in her bölgesinde ev, ofis ve inşaat sonrası temizlik hizmeti veriyoruz.",
+    aboutArea:
+      "Pendik, marinası ve sahil hattıyla bilinen, hem müstakil konutların hem de site tipi yerleşimlerin bir arada bulunduğu geniş bir ilçe. Bu çeşitlilik, her evin farklı bir temizlik yaklaşımı gerektirdiği anlamına geliyor — deniz kenarındaki dairelerde nem ve tuz kaynaklı kirlenme daha belirginken, yeni yapılan sitelerde inşaat sonrası detay temizliği ön plana çıkıyor.",
+    whyLocal:
+      "Pendik'te merkezi konumumuz sayesinde ekipmanımızı taşıma süresi kısalıyor, bu da özellikle aynı gün talep edilen temizliklerde fark yaratıyor. Bölgeyi ve mahalleleri yakından tanıyan ekibimiz, apartman yönetimleriyle de düzenli periyodik anlaşmalar yürütüyor.",
+  },
+  {
+    slug: "tuzla-temizlik",
+    name: "Tuzla",
+    metaTitle: "Tuzla Temizlik Şirketi | Ev, Ofis ve İnşaat Sonrası Temizlik",
+    metaDescription:
+      "Tuzla'da profesyonel ev temizliği, ofis temizliği ve inşaat sonrası temizlik hizmeti. Yeni yapılan siteler ve üniversite çevresi için özel çözümler. Ücretsiz keşif.",
+    intro:
+      "Tersaneleri ve hızla gelişen yeni yerleşim bölgeleriyle bilinen Tuzla'da, hem yeni teslim edilen dairelerin inşaat sonrası temizliğine hem de yerleşik hane ve ofislerin düzenli bakımına odaklanıyoruz.",
+    aboutArea:
+      "Tuzla, sanayi ve konut dokusunun iç içe geçtiği, son yıllarda özellikle yeni siteleşme ile hızla büyüyen bir ilçe. Üniversite kampüslerinin yakınlığı nedeniyle öğrenci evleri ve küçük ofisler de yoğun; bu tip alanlarda hızlı, uygun fiyatlı ve pratik temizlik çözümlerine talep daha fazla.",
+    whyLocal:
+      "Yeni teslim sitelerde sıkça karşılaştığımız ince inşaat tozu ve boya kalıntısı temizliği, Tuzla'daki işlerimizin önemli bir kısmını oluşturuyor. Bölgedeki site yönetimleriyle çalışırken, ortak alan ve merdiven temizliğini de kapsayan periyodik paketler sunuyoruz.",
+  },
+  {
+    slug: "kartal-temizlik",
+    name: "Kartal",
+    metaTitle: "Kartal Temizlik Şirketi | Ev, Ofis ve İnşaat Sonrası Temizlik",
+    metaDescription:
+      "Kartal'da profesyonel ev temizliği, ofis temizliği ve inşaat sonrası temizlik hizmeti. Kentsel dönüşüm bölgeleri ve iş merkezleri için deneyimli ekip. Ücretsiz keşif.",
+    intro:
+      "Kartal'da hem uzun süredir yerleşik hanelere hem de kentsel dönüşümle yeni teslim edilen konut ve iş yerlerine temizlik hizmeti veriyoruz. Sahil düzenlemesi ve gelişen iş merkezleri bölgeyi hızla değiştiriyor, biz de bu değişime ayak uyduruyoruz.",
+    aboutArea:
+      "Kartal, son yıllarda yoğun kentsel dönüşüm yaşayan, sahil hattında yeni konut projeleri ve iş merkezlerinin hızla arttığı bir ilçe. Bu nedenle Kartal'daki taleplerimizin önemli bir bölümü, yeni teslim alınan daire ve ofislerin ilk temizliğinden oluşuyor.",
+    whyLocal:
+      "Yeni ofis binalarında düzenli kurumsal temizlik anlaşmaları yaparken, konut tarafında hem tek seferlik teslim temizliği hem de haftalık/aylık periyodik ev temizliği hizmeti sunuyoruz.",
+  },
+  {
+    slug: "maltepe-temizlik",
+    name: "Maltepe",
+    metaTitle: "Maltepe Temizlik Şirketi | Ev, Ofis ve Detaylı Temizlik",
+    metaDescription:
+      "Maltepe'de profesyonel ev temizliği, detaylı temizlik ve ofis temizliği hizmeti. Sahil bölgesi ve yerleşik mahalleler için düzenli temizlik çözümleri. Ücretsiz keşif.",
+    intro:
+      "Uzun sahil şeridi ve yoğun apartman dokusuyla bilinen Maltepe'de, çoğunlukla yerleşik ailelerin düzenli ev temizliği ihtiyacına odaklanıyoruz. Aynı zamanda bölgedeki ofis ve iş yerlerine de hizmet veriyoruz.",
+    aboutArea:
+      "Maltepe, İstanbul'un en uzun sahil parklarından birine sahip, aile yaşamının ön planda olduğu, yerleşikliği yüksek bir ilçe. Konutların büyük kısmı orta-uzun vadeli yerleşim olduğu için, tek seferlik temizlikten çok düzenli ve periyodik temizlik talepleri öne çıkıyor.",
+    whyLocal:
+      "Maltepe'deki müşterilerimizin çoğu haftalık veya iki haftada bir düzenli ev temizliği tercih ediyor. Bu düzenli ilişki, evin ihtiyaçlarını zamanla daha iyi tanımamızı ve her seferinde daha verimli çalışmamızı sağlıyor.",
+  },
+  {
+    slug: "sultanbeyli-temizlik",
+    name: "Sultanbeyli",
+    metaTitle: "Sultanbeyli Temizlik Şirketi | Ev ve Apartman Temizliği",
+    metaDescription:
+      "Sultanbeyli'de profesyonel ev temizliği ve apartman merdiven temizliği hizmeti. Yoğun konut bölgeleri için uygun fiyatlı, güvenilir temizlik çözümleri. Ücretsiz keşif.",
+    intro:
+      "Sultanbeyli'nin yoğun konut dokusunda, hem bireysel ev temizliği hem de apartman/site ortak alan temizliği taleplerine hızlı çözüm sunuyoruz.",
+    aboutArea:
+      "Sultanbeyli, İstanbul'un iç kesiminde yer alan, nüfus yoğunluğu yüksek ve konut yapılaşmasının hızla geliştiği bir ilçe. Genç ve kalabalık aile yapısı, evlerde daha sık ve kapsamlı temizlik ihtiyacını beraberinde getiriyor.",
+    whyLocal:
+      "Sultanbeyli'de apartman yönetimleriyle yaptığımız merdiven ve ortak alan temizliği anlaşmaları, bölgedeki işlerimizin önemli bir kısmını oluşturuyor. Uygun fiyatlı, düzenli paketlerle hem bireysel hem toplu taleplere cevap veriyoruz.",
+  },
+];
 
 export type Service = {
   slug: string;

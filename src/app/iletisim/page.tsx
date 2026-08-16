@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Instagram, MessageCircle } from "lucide-react";
 import { siteConfig, whatsappLink } from "@/lib/site-data";
+import { buildBreadcrumbLd } from "@/lib/seo";
 import InspectionForm from "@/components/sections/InspectionForm";
 
 export const metadata: Metadata = {
@@ -12,8 +13,14 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Ana Sayfa", path: "" },
+    { name: "İletişim", path: "/iletisim" },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="relative pt-40 pb-20 md:pt-48 md:pb-24 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/poster-main.jpg" alt="" fill className="object-cover" aria-hidden="true" />

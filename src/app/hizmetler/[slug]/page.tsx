@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import * as Icons from "lucide-react";
 import { CheckCircle2, MessageCircle, ArrowRight } from "lucide-react";
-import { services, siteConfig, whatsappLink } from "@/lib/site-data";
+import { services, siteConfig, whatsappLink, blogPosts } from "@/lib/site-data";
 import InspectionForm from "@/components/sections/InspectionForm";
 import Reviews from "@/components/sections/Reviews";
 
@@ -35,6 +35,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   const Icon = (Icons as any)[service.icon] as Icons.LucideIcon;
   const otherServices = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  // Kategori adı hizmet başlığıyla eşleşen blog yazısı - içerik ile hizmet
+  // sayfası arasında doğal, alakalı bir dahili bağlantı kurar (Phase 5).
+  const relatedPost = blogPosts.find((p) => p.category === service.title);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -121,6 +124,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </li>
               ))}
             </ul>
+
+            {relatedPost && (
+              <>
+                <h3 className="font-display text-xl text-ivory mb-4 mt-8">İlgili Yazı</h3>
+                <Link
+                  href={`/blog/${relatedPost.slug}`}
+                  className="flex items-center justify-between text-graystone hover:text-gold transition-colors text-sm py-2"
+                >
+                  {relatedPost.title} <ArrowRight size={14} />
+                </Link>
+              </>
+            )}
           </aside>
         </div>
       </section>

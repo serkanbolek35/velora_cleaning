@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-data";
+import { buildBreadcrumbLd } from "@/lib/seo";
 import Gallery from "@/components/sections/Gallery";
 import VideoGallery from "@/components/sections/VideoGallery";
 import BeforeAfter from "@/components/sections/BeforeAfter";
@@ -13,8 +14,14 @@ export const metadata: Metadata = {
 };
 
 export default function GalleryPage() {
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Ana Sayfa", path: "" },
+    { name: "Galeri", path: "/galeri" },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="relative pt-40 pb-20 md:pt-48 md:pb-24 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/poster-rooms.jpg" alt="" fill className="object-cover" aria-hidden="true" />

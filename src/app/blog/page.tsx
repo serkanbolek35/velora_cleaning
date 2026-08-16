@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, ArrowRight } from "lucide-react";
 import { blogPosts, siteConfig } from "@/lib/site-data";
+import { buildBreadcrumbLd } from "@/lib/seo";
 import { formatDateTR } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -13,8 +14,14 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const breadcrumbLd = buildBreadcrumbLd([
+    { name: "Ana Sayfa", path: "" },
+    { name: "Blog", path: "/blog" },
+  ]);
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="relative pt-40 pb-20 md:pt-48 md:pb-24 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/poster-main.jpg" alt="" fill className="object-cover" aria-hidden="true" />

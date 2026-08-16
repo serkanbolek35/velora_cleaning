@@ -16,8 +16,9 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import { siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Ana Sayfa",
-  description: siteConfig.description,
+  title: "Ana Sayfa | İstanbul Temizlik Şirketi",
+  description:
+    "Velora Cleaning, Pendik, Tuzla, Kartal, Maltepe ve Sultanbeyli'de profesyonel ev temizliği, ofis temizliği ve inşaat sonrası temizlik hizmeti sunar. Ücretsiz keşif için hemen WhatsApp'tan yazın.",
   alternates: { canonical: siteConfig.url },
 };
 

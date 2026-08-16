@@ -9,15 +9,25 @@ import WhatsAppCTA from "@/components/sections/WhatsAppCTA";
 import FAQ from "@/components/sections/FAQ";
 
 export const metadata: Metadata = {
-  title: "Hizmetlerimiz",
+  title: "Hizmetlerimiz | İstanbul Temizlik Hizmetleri",
   description:
-    "Velora Cleaning; ev temizliği, ofis temizliği, inşaat sonrası temizlik, cam temizliği, apartman merdiven temizliği ve detaylı temizlik hizmetleri sunar.",
+    "Pendik, Tuzla, Kartal, Maltepe ve Sultanbeyli'de ev temizliği, ofis temizliği, inşaat sonrası temizlik, cam temizliği, apartman merdiven temizliği ve detaylı temizlik hizmetleri. Ücretsiz keşif.",
   alternates: { canonical: `${siteConfig.url}/hizmetler` },
 };
 
 export default function ServicesPage() {
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: siteConfig.url },
+      { "@type": "ListItem", position: 2, name: "Hizmetler", item: `${siteConfig.url}/hizmetler` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="relative pt-40 pb-20 md:pt-48 md:pb-28 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/poster-main.jpg" alt="" fill className="object-cover" aria-hidden="true" />

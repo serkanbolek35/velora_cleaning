@@ -21,23 +21,14 @@ import { siteConfig } from "@/lib/site-data";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Velora Cleaning | Premium Temizlik Hizmetleri - Pendik, Tuzla, Kartal",
+    default: "Velora Cleaning | İstanbul Temizlik Şirketi - Pendik, Tuzla, Kartal, Maltepe, Sultanbeyli",
     template: "%s | Velora Cleaning",
   },
   description: siteConfig.description,
-  keywords: [
-    "temizlik şirketi",
-    "ev temizliği",
-    "ofis temizliği",
-    "inşaat sonrası temizlik",
-    "cam temizliği",
-    "Pendik temizlik",
-    "Tuzla temizlik",
-    "Kartal temizlik",
-    "Maltepe temizlik",
-    "Sultanbeyli temizlik",
-    "profesyonel temizlik hizmeti İstanbul",
-  ],
+  // NOT: <meta name="keywords"> kasıtlı olarak kullanılmıyor. Google 2009'dan
+  // beri bu etiketi sıralamada dikkate almıyor ve kötüye kullanımı spam
+  // sinyali olarak işaretleyebiliyor. Anahtar kelime stratejisi bunun yerine
+  // her sayfanın title/description/H1/içeriğine doğal şekilde işleniyor.
   authors: [{ name: siteConfig.founder }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
@@ -55,25 +46,25 @@ export const metadata: Metadata = {
     locale: "tr_TR",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Velora Cleaning | Premium Temizlik Hizmetleri",
+    title: "Velora Cleaning | İstanbul Temizlik Şirketi",
     description: siteConfig.description,
     images: [{ url: "/images/poster-main.jpg", width: 1536, height: 1024, alt: "Velora Cleaning" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Velora Cleaning | Premium Temizlik Hizmetleri",
+    title: "Velora Cleaning | İstanbul Temizlik Şirketi",
     description: siteConfig.description,
     images: ["/images/poster-main.jpg"],
   },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const jsonLd = {
+  const cleaningServiceLd = {
     "@context": "https://schema.org",
     "@type": "CleaningService",
     name: siteConfig.name,
     image: `${siteConfig.url}/images/poster-main.jpg`,
-    "@id": siteConfig.url,
+    "@id": `${siteConfig.url}/#business`,
     url: siteConfig.url,
     telephone: siteConfig.phone,
     priceRange: "$$",
@@ -89,12 +80,46 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     sameAs: [siteConfig.instagram],
   };
 
+  // Marka/kurum kimliğini güçlendirmek için ayrı bir Organization kaydı.
+  // CleaningService zaten yerel işletme bilgisini taşıyor; Organization ise
+  // Google'ın markayı bir "entity" olarak tanımasına yardımcı olur.
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${siteConfig.url}/#organization`,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/images/logo.jpg`,
+    sameAs: [siteConfig.instagram],
+  };
+
+  // WebSite şeması, Google'ın site genelinde bir "site adı" göstermesine ve
+  // (ileride Search Console verisi biriktikçe) sitelinks arama kutusu gibi
+  // zenginleştirilmiş sonuçlar sunmasına yardımcı olabilir.
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
+    url: siteConfig.url,
+    name: siteConfig.name,
+    inLanguage: "tr-TR",
+    publisher: { "@id": `${siteConfig.url}/#organization` },
+  };
+
   return (
     <html lang="tr">
       <body className="antialiased">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(cleaningServiceLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
         />
         <LoadingScreen />
         <ScrollProgress />
